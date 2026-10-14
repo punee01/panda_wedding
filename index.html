@@ -1,0 +1,798 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Anusha &amp; Puneeth</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,400;1,500&family=Jost:wght@300;400;500&display=swap">
+<style>
+/* Layout: an umber photo-led invitation, then one quiet ivory column where a dotted
+   path and faint pencil sketches lead the guest from Bengaluru to the hall and beyond.
+   Single light look on purpose, like a printed invitation. */
+:root{
+  --paper:#F4EEE6;      /* ivory card stock */
+  --paper-2:#ECE3D7;    /* pressed fill */
+  --ink:#2B201B;        /* henna-dark ink */
+  --muted:#73655A;
+  --line:#D9CDBF;
+  --umber:#4E463C;      /* blurred background of the cover photo */
+  --umber-2:#3A332C;
+  --on-umber:#F4EEE6;
+  --on-umber-2:#D8CCBC;
+  --henna:#7B2F22;      /* accent */
+  --gold:#A8812F;
+  --gold-light:#E2C78F;
+  --green:#2E4A3A;      /* bangle green, used for "on time" */
+  --amber:#94590F;
+  --late:#9C3526;
+  --motif:#8C7868;
+
+  --f-display:"Cormorant Garamond", "Cormorant", Georgia, "Times New Roman", serif;
+  --f-body:"Jost", "Futura", "Century Gothic", "Avenir Next", system-ui, sans-serif;
+
+  --step--1:.8125rem;
+  --step-0:1rem;
+  --step-1:1.125rem;
+  --step-2:1.5rem;
+  --step-3:clamp(2.25rem, 1.6rem + 3vw, 3.5rem);
+  --gutter:clamp(16px, 4vw, 40px);
+  --col:680px;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:var(--f-body);font-weight:400;font-size:var(--step-0);line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:2px}
+.caps{font-size:.75rem;letter-spacing:.22em;text-transform:uppercase;font-weight:500}
+.num{font-variant-numeric:tabular-nums}
+h1,h2,h3{margin:0;text-wrap:balance;font-weight:400}
+p{margin:0}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* ---------- nav ---------- */
+.nav{
+  position:fixed;left:0;right:0;top:0;z-index:20;
+  padding:calc(env(safe-area-inset-top,0px) + 10px) var(--gutter) 10px;
+  display:flex;justify-content:space-between;align-items:center;gap:12px;
+  color:var(--on-umber);transition:background .3s,color .3s,box-shadow .3s;
+}
+.nav.solid{background:color-mix(in srgb,var(--paper) 94%,transparent);color:var(--ink);box-shadow:0 1px 0 var(--line);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.mono{font-family:var(--f-display);font-style:italic;font-size:1.35rem;text-decoration:none;line-height:1}
+.nav ul{list-style:none;margin:0;padding:0;display:flex;gap:clamp(14px,3.5vw,32px)}
+.nav ul a{text-decoration:none;font-size:.6875rem;letter-spacing:.2em;text-transform:uppercase;font-weight:500;padding-block:6px;display:inline-block;opacity:.8}
+.nav ul a[aria-current="true"]{opacity:1;box-shadow:0 1px 0 currentColor}
+
+/* ---------- hero ---------- */
+.hero{
+  position:relative;display:grid;
+  background:linear-gradient(180deg,#5d5548 0%,var(--umber) 45%,var(--umber-2) 100%);
+  color:var(--on-umber);overflow:hidden;
+}
+.hero-photo{
+  grid-row:1;grid-column:1;width:100%;height:56svh;min-height:300px;max-height:560px;
+  object-fit:cover;object-position:52% 62%;display:block;
+  -webkit-mask-image:linear-gradient(to bottom,#000 62%,transparent 98%);
+          mask-image:linear-gradient(to bottom,#000 62%,transparent 98%);
+}
+.hero-text{
+  grid-row:2;grid-column:1;position:relative;z-index:1;
+  padding-inline:var(--gutter);padding-block:0 56px;margin-top:-64px;
+  display:flex;flex-direction:column;align-items:center;text-align:center;gap:22px;
+}
+.eyebrow-hero{color:var(--gold-light)}
+.invite-line{font-size:.8125rem;letter-spacing:.32em;text-transform:uppercase;font-weight:400;line-height:1.9;color:var(--on-umber)}
+.names{
+  width:clamp(210px,58vw,320px);aspect-ratio:469/542;max-width:100%;
+  background:var(--on-umber);
+  -webkit-mask:url(img/names.svg) center/contain no-repeat;mask:url(img/names.svg) center/contain no-repeat;
+}
+.events{display:grid;grid-template-columns:1fr auto 1fr;gap:18px;align-items:start;width:100%;max-width:440px}
+.events .rule{width:1px;align-self:stretch;background:color-mix(in srgb,var(--on-umber) 45%,transparent)}
+.event{display:flex;flex-direction:column;align-items:center;gap:2px}
+.event .caps{font-weight:500;letter-spacing:.28em;color:var(--gold-light)}
+.event .day{font-size:.9375rem;letter-spacing:.06em}
+.event .time{font-family:var(--f-display);font-style:italic;font-size:1.75rem;line-height:1.2}
+.event a{font-size:.75rem;color:var(--on-umber-2);text-underline-offset:3px;margin-top:4px}
+.venue{display:flex;flex-direction:column;align-items:center;gap:4px;max-width:360px}
+.venue strong{font-weight:500;letter-spacing:.24em;text-transform:uppercase;font-size:.8125rem}
+.venue span{color:var(--on-umber-2);font-size:.875rem;line-height:1.5}
+.actions{display:flex;flex-wrap:wrap;justify-content:center;gap:10px}
+.btn{
+  display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:10px 18px;
+  border-radius:999px;border:1px solid currentColor;background:transparent;color:inherit;
+  font:500 .8125rem/1 var(--f-body);letter-spacing:.08em;text-decoration:none;cursor:pointer;
+}
+.btn svg{width:16px;height:16px;flex:none}
+.btn.fill{background:var(--on-umber);color:var(--umber-2);border-color:var(--on-umber)}
+.btn:hover{filter:brightness(1.06)}
+.countdown{font-size:.8125rem;color:var(--on-umber-2);letter-spacing:.04em}
+
+@media (min-width:880px){
+  .hero{grid-template-columns:minmax(380px,44%) 1fr;min-height:min(100svh,940px)}
+  .hero-photo{
+    grid-column:1 / -1;grid-row:1;justify-self:end;width:66%;height:100%;max-height:none;
+    object-position:60% 50%;
+    -webkit-mask-image:linear-gradient(to right,transparent 0,#000 34%);
+            mask-image:linear-gradient(to right,transparent 0,#000 34%);
+  }
+  .hero-text{grid-row:1;grid-column:1;margin:0;padding-block:110px 72px;justify-content:center}
+  .names{width:clamp(260px,24vw,340px)}
+}
+
+/* ---------- path interludes ---------- */
+.interlude{position:relative;max-width:var(--col);margin-inline:auto;padding-inline:var(--gutter);height:230px}
+.interlude svg.trail{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.trail .dots{fill:none;stroke:var(--motif);stroke-width:2;stroke-linecap:round;stroke-dasharray:0 9;vector-effect:non-scaling-stroke}
+.sketch{
+  position:absolute;background:var(--motif);opacity:.72;
+  -webkit-mask:var(--src) center/contain no-repeat;mask:var(--src) center/contain no-repeat;
+}
+.interlude figcaption{position:absolute;font-family:var(--f-display);font-style:italic;font-size:1.0625rem;color:var(--muted);line-height:1.35;max-width:15ch}
+.i1 .sketch{--src:url(img/stores.png);width:min(44%,230px);aspect-ratio:760/957;right:var(--gutter);top:14px;opacity:.55}
+.i1 figcaption{left:var(--gutter);top:60px}
+.i2 .sketch{--src:url(img/house.png);width:min(40%,200px);aspect-ratio:420/354;left:var(--gutter);top:46px;opacity:.6}
+.i2 figcaption{right:var(--gutter);top:80px;text-align:right}
+.i1{height:300px}
+.trail path.drawn{transition:stroke-dashoffset 1.6s ease}
+
+/* ---------- sections ---------- */
+section.block{max-width:var(--col);margin-inline:auto;padding-inline:var(--gutter);padding-block:8px 24px;scroll-margin-top:64px}
+.sec-head{display:flex;flex-direction:column;gap:10px;margin-bottom:28px}
+.sec-head .caps{color:var(--henna)}
+.sec-head h2{font-family:var(--f-display);font-style:italic;font-size:var(--step-3);line-height:1.05;font-weight:400}
+.sec-head p{color:var(--muted);max-width:56ch}
+
+/* tabs */
+.modes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.mode{
+  appearance:none;border:0;background:transparent;color:var(--ink);cursor:pointer;text-align:left;
+  padding:14px 14px 13px;display:flex;flex-direction:column;gap:2px;min-width:0;
+  font:inherit;border-right:1px solid var(--line);
+}
+.mode:last-child{border-right:0}
+.mode b{font-weight:500;font-size:1rem;display:flex;align-items:center;gap:8px}
+.mode b svg{width:18px;height:18px}
+.mode small{font-size:.75rem;color:var(--muted);line-height:1.35}
+.mode[aria-selected="true"]{background:var(--ink);color:var(--paper)}
+.mode[aria-selected="true"] small{color:color-mix(in srgb,var(--paper) 75%,transparent)}
+.panel{padding-top:26px}
+
+.seg{display:inline-grid;grid-template-columns:1fr 1fr;gap:4px;padding:4px;background:var(--paper-2);border-radius:12px;width:100%;max-width:520px}
+.seg button{appearance:none;border:0;background:transparent;border-radius:9px;padding:9px 10px;cursor:pointer;font:inherit;color:var(--muted);text-align:left;line-height:1.3;min-width:0}
+.seg button b{display:block;font-weight:500;color:var(--ink);font-size:.9375rem}
+.seg button span{font-size:.75rem}
+.seg button[aria-pressed="true"]{background:var(--paper);box-shadow:0 1px 3px rgba(43,32,27,.12)}
+
+.group-title{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin:30px 0 6px;padding-bottom:8px;border-bottom:1px solid var(--line)}
+.group-title h3{font-size:var(--step-1);font-weight:500}
+.group-title span{font-size:.8125rem;color:var(--muted)}
+.hint{font-size:.875rem;color:var(--muted);margin:10px 0 2px;max-width:60ch}
+
+ul.list{list-style:none;margin:0;padding:0}
+.train{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 14px;padding:16px 0;border-bottom:1px dashed var(--line)}
+.t-times{display:flex;align-items:center;gap:12px}
+.t-time{font-size:1.375rem;font-weight:400;line-height:1;font-variant-numeric:tabular-nums;white-space:nowrap}
+.t-time small{font-size:.6875rem;letter-spacing:.08em;margin-left:3px;color:var(--muted)}
+.t-time i{display:block;font-style:normal;font-size:.6875rem;color:var(--muted);letter-spacing:.12em;margin-top:5px}
+.t-line{flex:1;min-width:40px;max-width:150px;position:relative;text-align:center;font-size:.75rem;color:var(--muted);font-variant-numeric:tabular-nums}
+.t-line::before{content:"";position:absolute;left:0;right:0;top:50%;border-top:1px solid var(--line)}
+.t-line span{position:relative;background:var(--paper);padding:0 6px}
+.t-meta{grid-column:1;font-size:.875rem;color:var(--muted)}
+.t-meta b{color:var(--ink);font-weight:500;font-variant-numeric:tabular-nums;margin-right:4px}
+.t-note{grid-column:1;font-size:.8125rem;display:flex;align-items:center;gap:6px}
+.t-note::before{content:"";width:7px;height:7px;border-radius:50%;background:currentColor;flex:none}
+.t-note.ok{color:var(--green)}.t-note.tight{color:var(--amber)}.t-note.late{color:var(--late)}
+.copy{
+  grid-column:2;grid-row:1 / span 3;align-self:center;
+  appearance:none;border:1px solid var(--line);background:transparent;color:var(--ink);
+  width:40px;height:40px;border-radius:50%;display:grid;place-items:center;cursor:pointer;
+}
+.copy svg{width:17px;height:17px}
+.copy:hover{border-color:var(--ink)}
+.copy.done{border-color:var(--green);color:var(--green)}
+
+.notes{margin-top:30px;padding:20px;background:var(--paper-2);border-radius:14px;display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr))}
+.notes h4{margin:0 0 6px;font-weight:500;font-size:.9375rem}
+.notes ul{margin:0;padding-left:18px;font-size:.875rem;color:var(--muted);display:grid;gap:6px}
+.notes dl{margin:0;display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 12px;font-size:.875rem}
+.notes dt{font-weight:500;font-variant-numeric:tabular-nums}
+.notes dd{margin:0;color:var(--muted)}
+
+.feature{
+  position:relative;border:1px solid var(--green);border-radius:16px;padding:22px 22px 20px;
+  display:grid;gap:10px;background:color-mix(in srgb,var(--green) 5%,var(--paper));
+}
+.feature .caps{color:var(--green)}
+.feature h3{font-family:var(--f-display);font-style:italic;font-size:2rem;line-height:1.1}
+.feature p{color:var(--muted);font-size:.9375rem}
+.feature .row{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:4px}
+.btn.dark{border-color:var(--ink);color:var(--ink)}
+.btn.dark.solidbtn{background:var(--ink);color:var(--paper)}
+.opt{padding:20px 0;border-bottom:1px dashed var(--line);display:grid;gap:8px}
+.opt:last-child{border-bottom:0}
+.opt h3{font-size:var(--step-1);font-weight:500}
+.opt p,.opt li{color:var(--muted);font-size:.9375rem}
+.opt ul{margin:0;padding-left:18px;display:grid;gap:4px}
+.opt a{color:var(--henna);text-underline-offset:3px}
+.contact{margin-top:18px;padding:16px 18px;border-left:2px solid var(--gold);background:var(--paper-2);border-radius:0 12px 12px 0;font-size:.9375rem}
+
+/* places */
+.chips-wrap{overflow-x:auto;margin-inline:calc(var(--gutter) * -1);padding-inline:var(--gutter);scrollbar-width:none}
+.chips-wrap::-webkit-scrollbar{display:none}
+.chips{display:flex;gap:8px;width:max-content;padding-bottom:4px}
+.chip{appearance:none;border:1px solid var(--line);background:transparent;border-radius:999px;padding:8px 14px;font:inherit;font-size:.8125rem;color:var(--ink);cursor:pointer;white-space:nowrap;min-height:38px}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.place{display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 14px;padding:18px 0;border-bottom:1px dashed var(--line)}
+.pick{
+  grid-row:1 / span 5;appearance:none;width:36px;height:36px;border-radius:50%;
+  border:1px solid var(--line);background:transparent;color:var(--muted);cursor:pointer;display:grid;place-items:center;margin-top:2px
+}
+.pick svg{width:16px;height:16px}
+.pick[aria-pressed="true"]{background:var(--henna);border-color:var(--henna);color:var(--paper)}
+.place h3{font-size:1.0625rem;font-weight:500;line-height:1.35}
+.p-meta{font-size:.8125rem;color:var(--muted);font-variant-numeric:tabular-nums;display:flex;flex-wrap:wrap;gap:4px 10px;align-items:center}
+.p-meta .sep{width:3px;height:3px;border-radius:50%;background:var(--line)}
+.p-desc{font-size:.9375rem;max-width:62ch}
+.p-book{font-size:.8125rem;color:var(--muted);max-width:62ch}
+.tag{display:inline-block;font-size:.6875rem;letter-spacing:.12em;text-transform:uppercase;font-weight:500;padding:2px 8px;border-radius:999px;margin-right:6px;vertical-align:1px}
+.tag.book{background:color-mix(in srgb,var(--henna) 12%,transparent);color:var(--henna)}
+.tag.check{background:color-mix(in srgb,var(--amber) 14%,transparent);color:var(--amber)}
+.p-links{display:flex;flex-wrap:wrap;gap:4px 16px;font-size:.8125rem;margin-top:2px}
+.p-links a{color:var(--henna);text-underline-offset:3px;font-weight:500}
+.empty{color:var(--muted);padding:18px 0;font-size:.9375rem}
+.explore-art{position:relative}
+.explore-art .sketch{--src:url(img/mountain.png);width:min(42%,220px);aspect-ratio:360/179;right:0;top:-6px;opacity:.38}
+
+/* plan bar */
+.planbar{
+  position:fixed;left:0;right:0;bottom:0;z-index:30;
+  padding:12px var(--gutter) calc(env(safe-area-inset-bottom,0px) + 12px);
+  background:var(--ink);color:var(--paper);
+  display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;
+  box-shadow:0 -6px 24px rgba(43,32,27,.18);
+}
+.planbar p{font-size:.9375rem}
+.planbar .row{display:flex;gap:8px;flex-wrap:wrap}
+.planbar .btn{min-height:40px;padding:8px 14px}
+.planbar .btn.fill{background:var(--paper);color:var(--ink);border-color:var(--paper)}
+body.has-plan{padding-bottom:90px}
+
+/* footer */
+footer{max-width:var(--col);margin-inline:auto;padding-inline:var(--gutter);padding-block:40px 64px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:14px}
+footer .feather{width:56px;aspect-ratio:360/607;background:var(--motif);opacity:.6;-webkit-mask:url(img/feather.png) center/contain no-repeat;mask:url(img/feather.png) center/contain no-repeat;transform:rotate(18deg)}
+footer .sign{font-family:var(--f-display);font-style:italic;font-size:1.75rem}
+footer .seal{width:34px;height:34px;background:var(--henna);-webkit-mask:url(img/kou.png) center/contain no-repeat;mask:url(img/kou.png) center/contain no-repeat}
+footer small{color:var(--muted);font-size:.75rem;max-width:46ch}
+
+/* toast + copy sheet */
+.toast{position:fixed;left:50%;bottom:calc(env(safe-area-inset-bottom,0px) + 96px);transform:translate(-50%,8px);background:var(--ink);color:var(--paper);padding:10px 16px;border-radius:999px;font-size:.875rem;opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;z-index:50}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+.sheet{position:fixed;inset:0;z-index:60;background:rgba(43,32,27,.45);display:grid;place-items:end center;padding:16px}
+.sheet-card{background:var(--paper);color:var(--ink);width:100%;max-width:520px;border-radius:16px;padding:18px;display:grid;gap:12px;margin-bottom:env(safe-area-inset-bottom,0px)}
+.sheet-card textarea{width:100%;min-height:180px;border:1px solid var(--line);border-radius:10px;padding:12px;font:inherit;font-size:.875rem;background:var(--paper-2);color:var(--ink);resize:vertical}
+.sheet-card .row{display:flex;justify-content:flex-end}
+@media (prefers-reduced-motion:reduce){.nav,.toast,.trail path.drawn{transition:none}}
+</style>
+
+<nav class="nav" id="nav" aria-label="Sections">
+  <a class="mono" href="#invite">P&amp;A</a>
+  <ul>
+    <li><a href="#invite" data-nav="invite">Invite</a></li>
+    <li><a href="#travel" data-nav="travel">Travel</a></li>
+    <li><a href="#weekend" data-nav="weekend">Explore</a></li>
+  </ul>
+</nav>
+
+<header class="hero" id="invite">
+  <img class="hero-photo" src="img/cover-1100.jpg" srcset="img/cover-1100.jpg 1100w, img/cover-2000.jpg 2000w" sizes="(min-width:880px) 66vw, 100vw" alt="Anusha's hand with mehndi and green bangles resting in Puneeth's palm, holding two gold rings">
+  <div class="hero-text">
+    <p class="caps eyebrow-hero">Together with our families</p>
+    <p class="invite-line">Join us to celebrate<br>our wedding</p>
+    <h1 class="names" role="img" aria-label="Anusha &amp; Puneeth"></h1>
+    <div class="events">
+      <div class="event">
+        <span class="caps">Reception</span>
+        <span class="day num">Thu, 19 Nov 2026</span>
+        <span class="time num">7:00 pm</span>
+        <a id="cal-reception" target="_blank" rel="noopener">Add to calendar</a>
+      </div>
+      <span class="rule" aria-hidden="true"></span>
+      <div class="event">
+        <span class="caps">Wedding</span>
+        <span class="day num">Fri, 20 Nov 2026</span>
+        <span class="time num">9:50 am</span>
+        <a id="cal-wedding" target="_blank" rel="noopener">Add to calendar</a>
+      </div>
+    </div>
+    <div class="venue">
+      <strong>BHN Convention Hall</strong>
+      <span>Tarikere Tk Rd, opp. NTC Rice Mill, Old Town, Bhadravathi 577301</span>
+    </div>
+    <div class="actions">
+      <a class="btn fill" id="wa-invite" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20l1.3-3.9A8 8 0 1 1 8 19.2z"/></svg>
+        Send on WhatsApp</a>
+      <button class="btn" type="button" id="copy-invite">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V5a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h3"/></svg>
+        Copy details</button>
+      <a class="btn" id="map-hall" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-6.5-5.6-6.5-11A6.5 6.5 0 0 1 18.5 10c0 5.4-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.3"/></svg>
+        Open in Maps</a>
+    </div>
+    <p class="countdown num" id="countdown"></p>
+  </div>
+</header>
+
+<figure class="interlude i1" aria-hidden="true">
+  <svg class="trail" viewBox="0 0 400 300" preserveAspectRatio="none"><path class="dots" d="M200 0 C 200 60, 90 70, 110 150 S 300 200, 200 300"/></svg>
+  <div class="sketch"></div>
+  <figcaption>Most of you will set out from Bengaluru.</figcaption>
+</figure>
+
+<section class="block" id="travel" aria-labelledby="travel-h">
+  <div class="sec-head">
+    <span class="caps">Bengaluru to Bhadravathi · about 255 km</span>
+    <h2 id="travel-h">Getting there</h2>
+    <p>Pick how you'd like to travel. Every train listed runs on the date shown. Tap the copy button to send yourself the details.</p>
+  </div>
+
+  <div class="modes" role="tablist" aria-label="Ways to travel">
+    <button class="mode" role="tab" id="tab-train" aria-controls="p-train" aria-selected="true">
+      <b><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="3" width="12" height="14" rx="3"/><path d="M6 11h12M9 21l1.5-4M15 21l-1.5-4"/><circle cx="9.5" cy="14" r=".6" fill="currentColor"/><circle cx="14.5" cy="14" r=".6" fill="currentColor"/></svg>Train</b>
+      <small>3½ to 5 hrs</small>
+    </button>
+    <button class="mode" role="tab" id="tab-bus" aria-controls="p-bus" aria-selected="false" tabindex="-1">
+      <b><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="16" height="13" rx="2.5"/><path d="M4 11h16M7 20v-3M17 20v-3"/></svg>Bus</b>
+      <small>Our bus or KSRTC</small>
+    </button>
+    <button class="mode" role="tab" id="tab-flight" aria-controls="p-flight" aria-selected="false" tabindex="-1">
+      <b><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.5 13.5 3 11l1.5-1.5 8 1 4-4.5c1-1 2.6-1.3 3.2-.7s.3 2.2-.7 3.2l-4.5 4 1 8L14 22l-2.5-7.5"/></svg>Flight</b>
+      <small>Shivamogga or Bengaluru</small>
+    </button>
+  </div>
+
+  <div class="panel" id="p-train" role="tabpanel" aria-labelledby="tab-train">
+    <div class="seg" role="group" aria-label="Arrival station">
+      <button type="button" data-station="BDVT" aria-pressed="true"><b>Bhadravati (BDVT)</b><span>In town</span></button>
+      <button type="button" data-station="RRB" aria-pressed="false"><b>Birur Jn (RRB)</b><span>40 km, about 1 hr by taxi or bus</span></button>
+    </div>
+    <div id="trains"></div>
+    <div class="notes">
+      <div>
+        <h4>Booking tips</h4>
+        <ul>
+          <li>Book early. Reservations open 60 days ahead, so seats for 19 and 20 Nov are on sale now.</li>
+          <li>These are suggestions. About 39 trains run to Birur, so search <a href="https://www.irctc.co.in" target="_blank" rel="noopener">IRCTC</a> for both Bhadravati (BDVT) and Birur Jn (RRB).</li>
+          <li>Timings are from the published timetable as of 14 Oct 2026. Confirm on IRCTC or the <a href="https://enquiry.indianrail.gov.in/ntes/" target="_blank" rel="noopener">NTES</a> app before you travel.</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Bengaluru stations</h4>
+        <dl>
+          <dt>SBC</dt><dd>KSR Bengaluru (Majestic)</dd>
+          <dt>YPR</dt><dd>Yesvantpur Junction</dd>
+          <dt>SMVB</dt><dd>SMVT Bengaluru (Baiyappanahalli)</dd>
+          <dt>BAND</dt><dd>Banaswadi</dd>
+        </dl>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel" id="p-bus" role="tabpanel" aria-labelledby="tab-bus" hidden>
+    <div class="feature">
+      <span class="caps">Arranged by us</span>
+      <h3>Thursday 19 Nov, 8:00 am</h3>
+      <p>Our bus leaves Hebbal, Bengaluru for Bhadravathi in time for the reception that evening.</p>
+      <div class="row">
+        <button class="btn dark solidbtn" type="button" data-copy="ourbus">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V5a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h3"/></svg>Copy bus details</button>
+      </div>
+    </div>
+    <div class="opt">
+      <h3>KSRTC from Majestic</h3>
+      <p>KSRTC buses leave Kempegowda Bus Station (Majestic) for Shivamogga and Bhadravathi, including Airavat (AC) and Rajahamsa services. The trip takes 5 to 6 hours.</p>
+    </div>
+    <div class="opt">
+      <h3>Private AC and sleeper buses</h3>
+      <p>These run mostly overnight. Book on the KSRTC website, <a href="https://www.redbus.in" target="_blank" rel="noopener">redBus</a> or <a href="https://www.abhibus.com" target="_blank" rel="noopener">AbhiBus</a>.</p>
+    </div>
+    <div class="opt">
+      <h3>From Shivamogga</h3>
+      <p>Local buses to Bhadravathi run every few minutes and take 30 to 40 minutes.</p>
+    </div>
+  </div>
+
+  <div class="panel" id="p-flight" role="tabpanel" aria-labelledby="tab-flight" hidden>
+    <div class="opt">
+      <span class="caps" style="color:var(--henna)">Closest</span>
+      <h3>Fly to Shivamogga (RQY)</h3>
+      <p>Rashtrakavi Kuvempu Airport is about 8 km from Bhadravathi. Direct flights currently come only from Goa, Hyderabad and Tirupati, run by Star Air on select days.</p>
+    </div>
+    <div class="opt">
+      <span class="caps" style="color:var(--henna)">Most flights</span>
+      <h3>Fly to Bengaluru (BLR), then come with us</h3>
+      <ul>
+        <li>Join our bus from Hebbal at 8:00 am on Thursday 19 Nov, or take a train or KSRTC bus.</li>
+        <li>Reach Bengaluru the night before (18 Nov) or early on the 19th.</li>
+        <li>The airport is 1 to 1.5 hours from the city, so flights landing after about 6 am may miss the bus.</li>
+      </ul>
+    </div>
+    <p class="contact">Flying in? Share your flight details with <strong>Puneeth</strong> so we can plan for you.</p>
+  </div>
+</section>
+
+<figure class="interlude i2" aria-hidden="true">
+  <svg class="trail" viewBox="0 0 400 230" preserveAspectRatio="none"><path class="dots" d="M200 0 C 200 50, 300 60, 280 120 S 160 170, 200 230"/></svg>
+  <div class="sketch"></div>
+  <figcaption>Once you're in Bhadravathi, there's a lot close by.</figcaption>
+</figure>
+
+<section class="block" id="weekend" aria-labelledby="weekend-h">
+  <div class="sec-head explore-art">
+    <div class="sketch" aria-hidden="true"></div>
+    <span class="caps">Thu &amp; Fri wedding · Sat &amp; Sun free</span>
+    <h2 id="weekend-h">Make it a long weekend</h2>
+    <p>Temples, waterfalls and forest are all within a few hours of the hall. Distances and drive times are from BHN Convention Hall. Tap <b>+</b> to build a plan you can copy or send.</p>
+  </div>
+  <div class="chips-wrap"><div class="chips" role="group" aria-label="Filter places" id="chips"></div></div>
+  <div id="places"></div>
+</section>
+
+<footer>
+  <div class="feather" aria-hidden="true"></div>
+  <p class="sign">With love, Puneeth &amp; Anusha</p>
+  <div class="seal" role="img" aria-label="幸, happiness"></div>
+  <small>Travel and visiting details are as of 14 Oct 2026. Please confirm train times, opening hours and bookings before you go.</small>
+</footer>
+
+<div class="planbar" id="planbar" hidden>
+  <p id="plan-count"></p>
+  <div class="row">
+    <button class="btn fill" type="button" id="plan-copy">Copy plan</button>
+    <a class="btn" id="plan-wa" target="_blank" rel="noopener">WhatsApp</a>
+    <button class="btn" type="button" id="plan-clear">Clear</button>
+  </div>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<div class="sheet" id="sheet" hidden>
+  <div class="sheet-card" role="dialog" aria-modal="true" aria-labelledby="sheet-h">
+    <h3 id="sheet-h" style="font-weight:500">Copy these details</h3>
+    <p style="font-size:.875rem;color:var(--muted)">Your browser didn't allow automatic copying. The text is selected below: press and hold (or Ctrl/Cmd + C) to copy it.</p>
+    <textarea id="sheet-text" readonly></textarea>
+    <div class="row"><button class="btn dark" type="button" id="sheet-close">Done</button></div>
+  </div>
+</div>
+
+<script>
+(function(){
+  const HALL = {lat:13.8366915, lng:75.7127949};
+  const VENUE = "BHN Convention Hall, Tarikere Tk Rd, opp. NTC Rice Mill, Old Town, Bhadravathi 577301";
+  const HALL_MAP = "https://maps.app.goo.gl/R8yoQ7vBeEdo2Utt9";
+  const $ = (s, r=document) => r.querySelector(s);
+  const wa = t => "https://wa.me/?text=" + encodeURIComponent(t);
+  const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+
+  const COPY_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V5a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h3"/></svg>';
+  const CHECK_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>';
+  const PLUS_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>';
+
+  /* ---------- copy helpers ---------- */
+  const toastEl = $("#toast"); let toastT;
+  function toast(msg){ toastEl.textContent = msg; toastEl.classList.add("show"); clearTimeout(toastT); toastT = setTimeout(()=>toastEl.classList.remove("show"), 1800); }
+  function showSheet(text){
+    const s = $("#sheet"), ta = $("#sheet-text");
+    ta.value = text; s.hidden = false; ta.focus(); ta.select();
+  }
+  $("#sheet-close").addEventListener("click", ()=>{ $("#sheet").hidden = true; });
+  $("#sheet").addEventListener("click", e=>{ if(e.target.id==="sheet") e.currentTarget.hidden = true; });
+  function copyText(text, btn){
+    const ok = () => {
+      toast("Copied");
+      if (btn && btn.classList.contains("copy")) { btn.classList.add("done"); btn.innerHTML = CHECK_ICON; setTimeout(()=>{ btn.classList.remove("done"); btn.innerHTML = COPY_ICON; }, 1600); }
+    };
+    try {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(ok, ()=>showSheet(text));
+      } else showSheet(text);
+    } catch(e){ showSheet(text); }
+  }
+
+  /* ---------- invite ---------- */
+  const INVITE = [
+    "Anusha & Puneeth are getting married, and we'd love you to be there.",
+    "",
+    "Reception: Thu, 19 Nov 2026, 7:00 PM",
+    "Wedding: Fri, 20 Nov 2026, 9:50 AM",
+    "Venue: " + VENUE,
+    "Map: " + HALL_MAP
+  ].join("\n");
+  $("#wa-invite").href = wa(INVITE);
+  $("#map-hall").href = HALL_MAP;
+  $("#copy-invite").addEventListener("click", e => copyText(INVITE, e.currentTarget));
+  const cal = (title, start, end) => "https://calendar.google.com/calendar/render?action=TEMPLATE"
+    + "&text=" + encodeURIComponent(title) + "&dates=" + start + "/" + end
+    + "&location=" + encodeURIComponent(VENUE) + "&details=" + encodeURIComponent("Map: " + HALL_MAP);
+  $("#cal-reception").href = cal("Anusha & Puneeth: Reception", "20261119T133000Z", "20261119T163000Z");
+  $("#cal-wedding").href = cal("Anusha & Puneeth: Wedding", "20261120T042000Z", "20261120T073000Z");
+
+  (function countdown(){
+    const target = new Date("2026-11-19T19:00:00+05:30");
+    const days = Math.ceil((target - new Date()) / 86400000);
+    const el = $("#countdown");
+    if (days > 1) el.textContent = days + " days to the reception";
+    else if (days === 1) el.textContent = "The reception is tomorrow";
+    else el.hidden = true;
+  })();
+
+  /* ---------- trains ---------- */
+  const STN = {SBC:"KSR Bengaluru (SBC)", YPR:"Yesvantpur (YPR)", SMVB:"SMVT Bengaluru (SMVB)", BAND:"Banaswadi (BAND)"};
+  const TRAINS = {
+    BDVT: {
+      to: "Bhadravati (BDVT)", code:"BDVT",
+      groups: [
+        {title:"Arrive by Thursday evening", date:"Thu 19 Nov", trains:[
+          ["20689","Shivamogga Intercity Express","YPR","09:15","12:50"],
+          ["20651","Bengaluru–Talguppa Express","SBC","15:00","18:42"],
+          ["12089","Jan Shatabdi Express","SBC","17:15","20:49"]
+        ]},
+        {title:"Arrive Friday morning", date:"Fri 20 Nov", trains:[
+          ["16227","Mysuru–Talguppa Express (overnight)","SBC","23:15","04:28","Thu"]
+        ]}
+      ]
+    },
+    RRB: {
+      to: "Birur Jn (RRB)", code:"RRB", transfer:60,
+      groups: [
+        {title:"Arrive by Thursday evening", date:"Thu 19 Nov", trains:[
+          ["56519","Bengaluru–Hosapete Passenger","SBC","05:00","09:03"],
+          ["11006","Chalukya Express","SMVB","05:10","09:56"],
+          ["12079","Jan Shatabdi Express (to Hubballi)","SBC","06:00","08:49"],
+          ["20676","Vishwamanav Express","SBC","10:00","12:44"],
+          ["20667","Yesvantpur–Jaipur Express","YPR","12:00","14:39"],
+          ["12725","Siddaganga Express","SBC","13:00","15:48"],
+          ["17309","Yesvantpur–Vasco Express","YPR","15:30","18:12"],
+          ["16541","Yesvantpur–Pandharpur Express","YPR","18:15","20:58"],
+          ["16535","Golgumbaz Express","SBC","18:30","21:42"]
+        ]},
+        {title:"Arrive Friday morning", date:"Fri 20 Nov", wedding:true, trains:[
+          ["17423","Tirupati–Chikkamagaluru Express","SMVB","03:15","08:20"],
+          ["12778","Thiruvananthapuram North–Hubballi Express","BAND","03:35","06:50"],
+          ["11022","Tirunelveli–Dadar Express","SMVB","04:30","09:56"],
+          ["56519","Bengaluru–Hosapete Passenger","SBC","05:00","09:03"],
+          ["12079","Jan Shatabdi Express (to Hubballi)","SBC","06:00","08:49"]
+        ]}
+      ]
+    }
+  };
+  const mins = t => { const [h,m] = t.split(":").map(Number); return h*60+m; };
+  const fmt = m => { m = ((m % 1440) + 1440) % 1440; let h = Math.floor(m/60), mm = m%60; const ap = h>=12 ? "PM" : "AM"; h = h%12 || 12; return {t: h + ":" + String(mm).padStart(2,"0"), ap}; };
+  const fmtTxt = m => { const f = fmt(m); return f.t + " " + f.ap; };
+  const dur = (a,b) => { let d = mins(b) - mins(a); if (d < 0) d += 1440; return Math.floor(d/60) + "h " + String(d%60).padStart(2,"0") + "m"; };
+  const WEDDING = mins("09:50");
+
+  function renderTrains(code){
+    const S = TRAINS[code]; let html = "";
+    S.groups.forEach(g => {
+      html += `<div class="group-title"><h3>${esc(g.title)}</h3><span class="num">${esc(g.date)}</span></div>`;
+      if (g.wedding && S.transfer) html += `<p class="hint">The wedding is at 9:50 am and Birur is about an hour from the hall, so choose a train that reaches Birur by about 8:30 am.</p>`;
+      html += `<ul class="list">`;
+      g.trains.forEach(tr => {
+        const [no, name, from, dep, arr, depDay] = tr;
+        const d = fmt(mins(dep)), a = fmt(mins(arr));
+        let note = "";
+        if (g.wedding && S.transfer) {
+          const atHall = mins(arr) + S.transfer;
+          const cls = atHall <= mins("09:05") ? "ok" : atHall <= mins("09:30") ? "tight" : "late";
+          const label = cls === "ok" ? "In good time" : cls === "tight" ? "Tight" : "After the wedding starts";
+          note = `<p class="t-note ${cls}">At the hall around ${fmtTxt(atHall)} · ${label}</p>`;
+        }
+        const dayFrom = depDay ? depDay + " " : "";
+        const copy = `Train ${no} ${name}\n${depDay ? "Thu 19 Nov" : g.date}: ${STN[from]} ${fmtTxt(mins(dep))} → ${S.to} ${fmtTxt(mins(arr))}${depDay ? " (Fri 20 Nov)" : ""}\nPlease confirm on IRCTC / NTES before travel.`;
+        html += `<li class="train">
+          <div class="t-times">
+            <span class="t-time">${d.t}<small>${d.ap}</small><i>${dayFrom}${esc(from)}</i></span>
+            <span class="t-line"><span>${dur(dep,arr)}</span></span>
+            <span class="t-time">${a.t}<small>${a.ap}</small><i>${S.code}</i></span>
+          </div>
+          <p class="t-meta"><b>${no}</b>${esc(name)}</p>
+          ${note}
+          <button class="copy" type="button" aria-label="Copy train ${no} details" data-text="${esc(copy)}">${COPY_ICON}</button>
+        </li>`;
+      });
+      html += `</ul>`;
+    });
+    $("#trains").innerHTML = html;
+  }
+  $("#trains").addEventListener("click", e => { const b = e.target.closest(".copy"); if (b) copyText(b.dataset.text, b); });
+  document.querySelectorAll(".seg button").forEach(b => b.addEventListener("click", () => {
+    document.querySelectorAll(".seg button").forEach(x => x.setAttribute("aria-pressed", String(x === b)));
+    renderTrains(b.dataset.station);
+    try { localStorage.setItem("ap-station", b.dataset.station); } catch(e){}
+  }));
+  let station = "BDVT";
+  try { const s = localStorage.getItem("ap-station"); if (s && TRAINS[s]) station = s; } catch(e){}
+  document.querySelectorAll(".seg button").forEach(x => x.setAttribute("aria-pressed", String(x.dataset.station === station)));
+  renderTrains(station);
+
+  const OURBUS = "Anusha & Puneeth's wedding bus\nThu, 19 Nov 2026 at 8:00 AM\nFrom Hebbal, Bengaluru to Bhadravathi\nVenue: " + VENUE + "\nMap: " + HALL_MAP;
+  document.querySelector('[data-copy="ourbus"]').addEventListener("click", e => copyText(OURBUS, e.currentTarget));
+
+  /* ---------- tabs ---------- */
+  const tabs = [...document.querySelectorAll(".mode")];
+  function selectTab(t, focus){
+    tabs.forEach(x => { const on = x === t; x.setAttribute("aria-selected", String(on)); x.tabIndex = on ? 0 : -1; $("#" + x.getAttribute("aria-controls")).hidden = !on; });
+    if (focus) t.focus();
+  }
+  tabs.forEach((t,i) => {
+    t.addEventListener("click", () => selectTab(t));
+    t.addEventListener("keydown", e => {
+      if (e.key === "ArrowRight" || e.key === "ArrowLeft") { e.preventDefault(); selectTab(tabs[(i + (e.key === "ArrowRight" ? 1 : tabs.length - 1)) % tabs.length], true); }
+    });
+  });
+
+  /* ---------- places ---------- */
+  const BTR = "https://tickets.bhadratigerreserve.in";
+  const P = [
+    {id:"lns", name:"Lakshmi Narasimha Swamy Temple", cat:"Temples", km:3, min:10, lat:13.8486035, lng:75.7006502,
+      d:"A Hoysala temple from about 1250 CE, carved in soapstone on a star-shaped plan, with three shrines. Protected by the ASI.",
+      b:"Free entry. Open about 8:30 to 11 am and 6 to 9 pm."},
+    {id:"snp", name:"Shivappa Nayaka Palace Museum", cat:"Heritage", km:21, min:40, lat:13.9275643, lng:75.5835958,
+      d:"A 17th-century rosewood palace on the Tunga river in Shivamogga, now a museum of sculptures, inscriptions, hero stones and coins.",
+      b:"Ticket at the counter. Open 10 am to 5 pm, closed Mondays. No photography inside."},
+    {id:"btr", name:"Bhadra Tiger Reserve (Lakkavalli gate)", cat:"Wildlife", km:21, min:35, lat:13.6984136, lng:75.6464934,
+      d:"About 890 sq km of Western Ghats forest with tigers, elephants, leopards, gaur and more than 300 kinds of birds, including four hornbill species.",
+      tag:["book","Booking required"], link:BTR,
+      b:"Book every safari online; carry photo ID and arrive 30 minutes early. Per adult: jeep ₹700, bus ₹550, boat ₹700. Slots at 6:00, 8:00, 14:30 and 16:30. Office: 08262 234904."},
+    {id:"lak", name:"Lakkavalli Dam (Bhadra Dam)", cat:"Dams", km:22, min:35, lat:13.7011375, lng:75.6367152,
+      d:"The Bhadra river dam, built between 1947 and 1965. Its reservoir forms the northern edge of the tiger reserve.",
+      b:"No booking needed for the dam. Safaris from the gate next to it are booked separately."},
+    {id:"amr", name:"Amruthapura (Amruteshwara Temple)", cat:"Temples", km:28, min:45, lat:13.7418045, lng:75.8526692,
+      d:"A Hoysala temple built in 1196. Its hall carries 140 carved panels telling the Ramayana and the stories of Krishna and the Mahabharata.",
+      b:"Free entry."},
+    {id:"gaj", name:"Gajanur Dam (Tunga Dam)", cat:"Dams", km:32, min:55, lat:13.8417123, lng:75.5266509,
+      d:"The Tunga dam, about 1 km from Sakrebyle, so the two are usually visited together.",
+      b:"No booking. Access near the dam can be restricted and photography may not be allowed."},
+    {id:"sak", name:"Sakrebyle Elephant Camp", cat:"Wildlife", km:34, min:60, lat:13.8406589, lng:75.5132359,
+      d:"A Forest Department elephant camp on the Tunga river, known for the elephants' morning bath.",
+      tag:["check","Check before going"],
+      b:"Closed to visitors in May 2026 and due to reopen with new rules: you watch from behind barricades, with no bathing or touching. Morning visits only, about 8:30 am to 1 pm."},
+    {id:"kal", name:"Kallathigiri (Kalhatti) Falls", cat:"Waterfalls", km:47, min:75, lat:13.5486112, lng:75.7891482,
+      d:"A 122 m waterfall near Kemmangundi, with an old Veerabhadreshwara temple beside it.",
+      b:"Small entry ticket at the site. Open about 7 am to 6 pm."},
+    {id:"man", name:"Mandagadde Bird Sanctuary", cat:"Wildlife", km:50, min:75, lat:13.7400716, lng:75.4592356,
+      d:"A small island in the Tunga where egrets, darters and cormorants nest, beside the Shivamogga–Thirthahalli highway.",
+      b:"No booking. Watch tower by the highway. Birds are around until about December."},
+    {id:"kem", name:"Kemmangundi", cat:"Hills", km:55, min:90, lat:13.5472866, lng:75.7575229,
+      d:"A hill station at about 1,370 m with gardens, the Raj Bhavan guest house and the Z Point viewpoint.",
+      link:BTR,
+      b:"Vehicle fee at the ghat check-post. Z Point trek ₹150 per person, 7 am to 4 pm, bookable online."},
+    {id:"heb", name:"Hebbe Falls", cat:"Waterfalls", km:63, min:120, timeLabel:"2 hr incl. jeep", lat:13.5421196, lng:75.7252612,
+      d:"A 169 m two-tier waterfall inside Bhadra Tiger Reserve, reached by forest jeep and then a short walk.",
+      tag:["book","Booking required"], link:BTR,
+      b:"₹708 per person including the jeep, 8 am to 4 pm. Book online; carry photo ID and arrive 30 minutes early."},
+    {id:"bab", name:"Baba Budangiri (Inam Dattatreya Peetha)", cat:"Temples", km:85, min:150, lat:13.4326953, lng:75.7550008,
+      d:"A hill shrine sacred to Hindus and Muslims alike. It is linked to Baba Budan, who is credited with bringing coffee to India.",
+      b:"No booking. Very busy on weekends and festival days; check road and weather alerts first."},
+    {id:"kup", name:"Kuppalli (Kuvempu Kavi Mane)", cat:"Heritage", km:95, min:150, lat:13.6048755, lng:75.3161592,
+      d:"The childhood home of poet Kuvempu, who wrote Karnataka's state song. The Malnad house is now a museum, with the Kavishaila memorial nearby.",
+      b:"Ticket at the gate (₹20). Open 9:30 am to 6:30 pm. No photography inside."},
+    {id:"mul", name:"Mullayanagiri", cat:"Hills", km:95, min:165, lat:13.3908855, lng:75.7213295,
+      d:"Karnataka's highest peak, at about 1,930 m, with the Mullappa Swamy temple at the top.",
+      tag:["check","Vehicle pass"],
+      b:"Vehicles need an online pass for one of two daily slots (about 6 am to noon, 1 to 6 pm). Check Chikkamagaluru district tourism before going."},
+    {id:"agu", name:"Agumbe", cat:"Hills", km:110, min:165, lat:13.4976887, lng:75.0812019,
+      d:"One of the wettest places in India, with a sunset point over the Western Ghats. Malgudi Days was filmed in the village.",
+      b:"No booking. Sunset Point is free."},
+    {id:"jog", name:"Jog Falls", cat:"Waterfalls", km:122, min:180, lat:14.226635, lng:74.8073345,
+      d:"The Sharavathi drops about 253 m in four streams, among the highest waterfalls in India. The flow is strongest from August to December.",
+      b:"Entry and parking tickets at the viewpoint. Open about 7:30 am to 7 pm."}
+  ];
+  const CATS = ["All","Temples","Waterfalls","Hills","Wildlife","Heritage","Dams"];
+  const BANDS = [
+    {title:"Close by", sub:"under an hour", test:m => m <= 60},
+    {title:"Half a day", sub:"1 to 2 hours away", test:m => m > 60 && m <= 120},
+    {title:"Day trip", sub:"2½ to 3 hours away", test:m => m > 120}
+  ];
+  const tl = p => p.timeLabel || (p.min < 60 ? p.min + " min" : Math.floor(p.min/60) + " hr" + (p.min%60 ? " " + (p.min%60) + " min" : ""));
+  const dir = p => `https://www.google.com/maps/dir/?api=1&origin=${HALL.lat},${HALL.lng}&destination=${p.lat},${p.lng}`;
+  let cat = "All", plan = new Set();
+  try { const s = JSON.parse(localStorage.getItem("ap-plan") || "[]"); if (Array.isArray(s)) s.forEach(id => P.some(p => p.id === id) && plan.add(id)); } catch(e){}
+
+  $("#chips").innerHTML = CATS.map(c => `<button class="chip" type="button" aria-pressed="${c === cat}" data-cat="${c}">${c}</button>`).join("");
+  $("#chips").addEventListener("click", e => {
+    const b = e.target.closest(".chip"); if (!b) return;
+    cat = b.dataset.cat;
+    document.querySelectorAll(".chip").forEach(x => x.setAttribute("aria-pressed", String(x === b)));
+    renderPlaces();
+  });
+
+  function renderPlaces(){
+    const list = P.filter(p => cat === "All" || p.cat === cat).sort((a,b) => a.min - b.min || a.km - b.km);
+    let html = "";
+    BANDS.forEach(band => {
+      const items = list.filter(p => band.test(p.min)); if (!items.length) return;
+      html += `<div class="group-title"><h3>${band.title}</h3><span>${band.sub}</span></div><ul class="list">`;
+      items.forEach(p => {
+        const on = plan.has(p.id);
+        html += `<li class="place">
+          <button class="pick" type="button" data-id="${p.id}" aria-pressed="${on}" aria-label="${on ? "Remove" : "Add"} ${esc(p.name)} ${on ? "from" : "to"} your plan">${on ? CHECK_ICON : PLUS_ICON}</button>
+          <h3>${esc(p.name)}</h3>
+          <p class="p-meta"><span>${p.cat}</span><span class="sep"></span><span>${p.km} km</span><span class="sep"></span><span>${tl(p)}</span></p>
+          <p class="p-desc">${esc(p.d)}</p>
+          <p class="p-book">${p.tag ? `<span class="tag ${p.tag[0]}">${p.tag[1]}</span>` : ""}${esc(p.b)}</p>
+          <p class="p-links"><a href="${dir(p)}" target="_blank" rel="noopener">Directions from the hall</a>${p.link ? `<a href="${p.link}" target="_blank" rel="noopener">Book online</a>` : ""}</p>
+        </li>`;
+      });
+      html += `</ul>`;
+    });
+    $("#places").innerHTML = html || `<p class="empty">No places in this category.</p>`;
+  }
+  $("#places").addEventListener("click", e => {
+    const b = e.target.closest(".pick"); if (!b) return;
+    const id = b.dataset.id; plan.has(id) ? plan.delete(id) : plan.add(id);
+    savePlan(); renderPlaces(); renderPlan();
+    const nb = document.querySelector(`.pick[data-id="${id}"]`); if (nb) nb.focus();
+  });
+  function savePlan(){ try { localStorage.setItem("ap-plan", JSON.stringify([...plan])); } catch(e){} }
+  function planText(){
+    const items = P.filter(p => plan.has(p.id)).sort((a,b) => a.min - b.min);
+    const lines = ["Long weekend around Anusha & Puneeth's wedding, from BHN Convention Hall, Bhadravathi:", ""];
+    items.forEach((p,i) => {
+      lines.push(`${i+1}. ${p.name} (${p.km} km, about ${tl(p)})`);
+      if (p.tag && p.tag[0] === "book") lines.push("   Booking required: " + p.link);
+      if (p.tag && p.tag[0] === "check") lines.push("   " + p.tag[1] + ".");
+      lines.push("   Directions: " + dir(p));
+    });
+    return lines.join("\n");
+  }
+  function renderPlan(){
+    const n = plan.size, bar = $("#planbar");
+    bar.hidden = n === 0; document.body.classList.toggle("has-plan", n > 0);
+    if (!n) return;
+    $("#plan-count").textContent = n === 1 ? "1 place in your plan" : n + " places in your plan";
+    $("#plan-wa").href = wa(planText());
+  }
+  $("#plan-copy").addEventListener("click", e => copyText(planText(), e.currentTarget));
+  $("#plan-clear").addEventListener("click", () => { plan.clear(); savePlan(); renderPlaces(); renderPlan(); });
+  renderPlaces(); renderPlan();
+
+  /* ---------- nav state ---------- */
+  const nav = $("#nav"), hero = $("#invite");
+  const navLinks = [...document.querySelectorAll("[data-nav]")];
+  if ("IntersectionObserver" in window) {
+    new IntersectionObserver(([en]) => nav.classList.toggle("solid", !en.isIntersecting), {rootMargin:"-60px 0px 0px 0px"}).observe(hero);
+    const secs = ["invite","travel","weekend"].map(id => document.getElementById(id));
+    const io = new IntersectionObserver(ens => ens.forEach(en => {
+      if (en.isIntersecting) navLinks.forEach(a => a.setAttribute("aria-current", String(a.dataset.nav === en.target.id)));
+    }), {rootMargin:"-45% 0px -50% 0px"});
+    secs.forEach(s => io.observe(s));
+
+    /* draw the dotted trails as they come into view */
+    if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      document.querySelectorAll(".trail .dots").forEach(path => {
+        const fig = path.closest(".interlude");
+        if (fig.getBoundingClientRect().top < innerHeight) return;
+        const len = path.getTotalLength();
+        const mask = document.createElementNS("http://www.w3.org/2000/svg", "mask");
+        const id = "m" + Math.random().toString(36).slice(2);
+        mask.id = id;
+        const mp = path.cloneNode(); mp.removeAttribute("class");
+        mp.setAttribute("stroke", "#fff"); mp.setAttribute("stroke-width", "8"); mp.setAttribute("fill", "none");
+        mp.style.strokeDasharray = len; mp.style.strokeDashoffset = len; mp.classList.add("drawn");
+        mask.appendChild(mp); path.ownerSVGElement.appendChild(mask);
+        path.setAttribute("mask", `url(#${id})`);
+        new IntersectionObserver(([en], obs) => { if (en.isIntersecting) { requestAnimationFrame(() => { mp.style.strokeDashoffset = 0; }); obs.disconnect(); } }, {threshold:.35}).observe(fig);
+      });
+    }
+  } else nav.classList.add("solid");
+})();
+</script>
+
+</body></html>

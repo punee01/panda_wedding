@@ -215,6 +215,7 @@ ul.list{list-style:none;margin:0;padding:0}
 .feature .caps{color:var(--green)}
 .feature h3{font-family:var(--f-display);font-style:italic;font-size:2rem;line-height:1.1}
 .feature p{color:var(--muted);font-size:.9375rem}
+.feature .rsvp{color:var(--green);font-weight:500;font-size:1rem;letter-spacing:.02em;padding-top:12px;margin-top:2px;border-top:1px solid color-mix(in srgb,var(--green) 25%,transparent)}
 .feature .row{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:4px}
 .btn.dark{border-color:var(--ink);color:var(--ink)}
 .btn.dark.solidbtn{background:var(--ink);color:var(--paper)}
@@ -326,9 +327,6 @@ footer small{color:var(--muted);font-size:.75rem;max-width:46ch}
       <a class="btn fill" id="wa-invite" target="_blank" rel="noopener">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20l1.3-3.9A8 8 0 1 1 8 19.2z"/></svg>
         Send on WhatsApp</a>
-      <button class="btn" type="button" id="copy-invite">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V5a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h3"/></svg>
-        Copy details</button>
       <a class="btn" id="map-hall" target="_blank" rel="noopener">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-6.5-5.6-6.5-11A6.5 6.5 0 0 1 18.5 10c0 5.4-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.3"/></svg>
         Open in Maps</a>
@@ -394,13 +392,9 @@ footer small{color:var(--muted);font-size:.75rem;max-width:46ch}
 
   <div class="panel" id="p-bus" role="tabpanel" aria-labelledby="tab-bus" hidden>
     <div class="feature">
-      <span class="caps">Arranged by us</span>
       <h3>Thursday 19 Nov, 8:00 am</h3>
       <p>Our bus leaves Hebbal, Bengaluru for Bhadravathi in time for the reception that evening.</p>
-      <div class="row">
-        <button class="btn dark solidbtn" type="button" data-copy="ourbus">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V5a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h3"/></svg>Copy bus details</button>
-      </div>
+      <p class="rsvp">RSVP by 28th October to Puneeth</p>
     </div>
     <div class="opt">
       <h3>KSRTC from Majestic</h3>
@@ -455,9 +449,7 @@ footer small{color:var(--muted);font-size:.75rem;max-width:46ch}
 <footer>
   <div class="feather" aria-hidden="true"></div>
   <p class="sign">With love, Puneeth &amp; Anusha</p>
-  <div class="seal" role="img" aria-label="幸, happiness"></div>
-  <small>Travel and visiting details are as of 14 Oct 2026. Please confirm train times, opening hours and bookings before you go.</small>
-</footer>
+  <div class="seal" role="img" aria-label="幸, happiness"></div></footer>
 
 <div class="planbar" id="planbar" hidden>
   <p id="plan-count"></p>
@@ -524,7 +516,6 @@ footer small{color:var(--muted);font-size:.75rem;max-width:46ch}
   ].join("\n");
   $("#wa-invite").href = wa(INVITE);
   $("#map-hall").href = HALL_MAP;
-  $("#copy-invite").addEventListener("click", e => copyText(INVITE, e.currentTarget));
   const cal = (title, start, end) => "https://calendar.google.com/calendar/render?action=TEMPLATE"
     + "&text=" + encodeURIComponent(title) + "&dates=" + start + "/" + end
     + "&location=" + encodeURIComponent(VENUE) + "&details=" + encodeURIComponent("Map: " + HALL_MAP);
@@ -532,11 +523,14 @@ footer small{color:var(--muted);font-size:.75rem;max-width:46ch}
   $("#cal-wedding").href = cal("Anusha & Puneeth: Wedding", "20261120T042000Z", "20261120T073000Z");
 
   (function countdown(){
-    const target = new Date("2026-11-19T19:00:00+05:30");
-    const days = Math.ceil((target - new Date()) / 86400000);
+    // Count whole calendar days in India time, so the number is the same all day
+    const ist = new Date(Date.now() + 5.5 * 3600000);
+    const today = Date.UTC(ist.getUTCFullYear(), ist.getUTCMonth(), ist.getUTCDate());
+    const days = Math.round((Date.UTC(2026, 10, 19) - today) / 86400000);
     const el = $("#countdown");
     if (days > 1) el.textContent = days + " days to the reception";
     else if (days === 1) el.textContent = "The reception is tomorrow";
+    else if (days === 0) el.textContent = "The reception is tonight";
     else el.hidden = true;
   })();
 
@@ -629,9 +623,6 @@ footer small{color:var(--muted);font-size:.75rem;max-width:46ch}
   try { const s = localStorage.getItem("ap-station"); if (s && TRAINS[s]) station = s; } catch(e){}
   document.querySelectorAll(".seg button").forEach(x => x.setAttribute("aria-pressed", String(x.dataset.station === station)));
   renderTrains(station);
-
-  const OURBUS = "Anusha & Puneeth's wedding bus\nThu, 19 Nov 2026 at 8:00 AM\nFrom Hebbal, Bengaluru to Bhadravathi\nVenue: " + VENUE + "\nMap: " + HALL_MAP;
-  document.querySelector('[data-copy="ourbus"]').addEventListener("click", e => copyText(OURBUS, e.currentTarget));
 
   /* ---------- tabs ---------- */
   const tabs = [...document.querySelectorAll(".mode")];
